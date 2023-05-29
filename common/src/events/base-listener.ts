@@ -34,7 +34,7 @@ export abstract class Listener<T extends LEvent> {
     );
 
     subscription.on("message", (msg: Message) => {
-      console.log(`👂: ${this.subject} => 🪹[${this.queueGroupName}]`);
+      console.log(`👂: ${this.subject} >> 🪹[${this.queueGroupName}]`);
       const parsedData = this.parseMessage(msg);
       this.onMessage(parsedData, msg);
     });
