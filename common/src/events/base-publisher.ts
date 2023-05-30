@@ -18,7 +18,7 @@ export abstract class Publisher<T extends PEvent> {
     return new Promise((resolve, reject) => {
       this.client.publish(this.subject, JSON.stringify(data), (err) => {
         if (err) return reject(err);
-        console.log("🗣️:", this.subject);
+        console.log("🗣️", this.subject);
         resolve();
       });
     });
