@@ -4,7 +4,6 @@ import { signup } from "../../test/auth-helper";
 
 it("responsed with details about the current user", async () => {
   const cookie = await signup();
-  console.log(cookie)
 
   const response = await request(app)
     .get("/api/users/currentuser")
