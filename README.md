@@ -27,7 +27,7 @@ npm install -g typescript @REM tsc --init, to generate tsconfig.json file in you
 3.  `skaffold dev` [from root of your project]
 4.  Set custom domain IP to 127.0.01 in `%WINDIR%\System32\drivers\etc\hosts` file, i.e. by adding line `127.0.0.1 my-k8s.com`
 5.  Get ingress pod name: `kubectl get pods -n ingress-nginx` [Fix](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/#enable-the-ingress-controller)
-6.  Start port forwarding: `kubectl -n ingress-nginx port-forward pod/ingress-nginx-controller-5d88495688-dxxgw --address 0.0.0.0 80:80 443:443`, where you should replace `ingress-nginx-controller-5d88495688-dxxgw` with your ingress pod name.
+6.  Start port forwarding: `kubectl port-forward pod/ingress-nginx-controller-5d88495688-dxxgw --address 0.0.0.0 80:80 443:443 -n ingress-nginx`, where you should replace `ingress-nginx-controller-5d88495688-dxxgw` with your ingress pod name.
 7.  Enjoy using ingress on custom domain in any browser (but only when port forwarding is active)
 8. `skaffold delete` to delete deployment and services at once
 
