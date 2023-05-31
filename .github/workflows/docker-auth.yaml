@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: fedora-latest
     steps:
       - uses: actions/checkout@v2
       - run:  cd auth && docker build -t gupta840/ticketing-auth .
