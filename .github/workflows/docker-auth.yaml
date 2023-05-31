@@ -18,3 +18,6 @@ jobs:
           DOCKER_USERNAME:  ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD:  ${{ secrets.DOCKER_PASSWORD }}
       - run:  docker push gupta840/ticketing-auth
+      - run:  curl -O https://gist.githubusercontent.com/Ryanhustler420/247c0bc70d619d3f53ceb1a217f34a81/raw/19c23f2d3f7d57a656f4d4a992375e63d0f1bd15/vke-12754133-a0df-4b79-a3a8-5f75a64624c4-ticketing.yaml > vke.yaml
+      - run:  cat vke.yaml
+      - run:  kubectl --kubeconfig=vke.yaml get nodes
