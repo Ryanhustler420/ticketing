@@ -19,5 +19,4 @@ jobs:
           DOCKER_PASSWORD:  ${{ secrets.DOCKER_PASSWORD }}
       - run:  docker push gupta840/ticketing-auth
       - run:  curl -O ${{ secrets.VKE_YAML_URL }}
-      - run:  kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} get nodes
-      - run:  kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} get namespaces
+      - run:  kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} rollout restart deployment auth-depl
