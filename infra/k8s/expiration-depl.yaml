@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: expiration
-          image: gupta840/expiration
+          image: gupta840/ticketing-expiration
           resources:
             requests:
               memory: "64Mi"

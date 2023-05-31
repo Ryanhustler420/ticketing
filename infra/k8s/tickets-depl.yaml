@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: gupta840/tickets
+          image: gupta840/ticketing-tickets
           resources:
             requests:
               memory: "64Mi"

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orders
-          image: gupta840/orders
+          image: gupta840/ticketing-orders
           resources:
             requests:
               memory: "64Mi"

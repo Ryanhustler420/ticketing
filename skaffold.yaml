@@ -9,7 +9,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: gupta840/auth
+    - image: gupta840/ticketing-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -17,7 +17,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: gupta840/client
+    - image: gupta840/ticketing-client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -25,7 +25,7 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-    - image: gupta840/tickets
+    - image: gupta840/ticketing-tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -33,7 +33,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: gupta840/orders
+    - image: gupta840/ticketing-orders
       context: orders
       docker:
         dockerfile: Dockerfile
@@ -41,7 +41,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: gupta840/expiration
+    - image: gupta840/ticketing-expiration
       context: expiration
       docker:
         dockerfile: Dockerfile
@@ -49,7 +49,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: gupta840/payments
+    - image: gupta840/ticketing-payments
       context: payments
       docker:
         dockerfile: Dockerfile
