@@ -13,7 +13,7 @@ const start = async () => {
   }
   const PORT = 3000;
   app.listen(PORT, () => {
-    console.log(`Server is listing on PORT ${PORT}`);
+    console.log(`Server is listing on port ${PORT}`);
   });
 };
 
