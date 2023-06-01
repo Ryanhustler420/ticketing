@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: www.goonsroom.com
+    - host: www.raisehand.software
       http:
         paths:
           - path: /api/users/?(.*)
