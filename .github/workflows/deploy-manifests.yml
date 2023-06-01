@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run:  curl -O ${{ secrets.VKE_YAML_URL }}
-      - run:  kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} apply -f infra/k8s
+      - run:  kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} apply -f infra/k8s && kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} apply -f infra/k8s-prod
