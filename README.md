@@ -122,6 +122,29 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl apply -f https://gist.githubusercontent.com/Ryanhustler420/b86e46c4e7bd10f6fca04314fc85680e/raw/121fafbfda3f565c452ff7e6b9ca8c9e94a91ab9/ingress-nginx-controller-v1.8.0-digital-ocean-deploy.yaml
 ```
 
+> Buy a domain name i.e www.something.com
+
+> Add these details to `CustomDNS`
+
+```cmd
+ns1.digitalocean.com
+ns2.digitalocean.com
+ns3.digitalocean.com
+```
+
+> Go to digital ocean's `Networks` under domain tab and add your domain name
+
+```
+Create some records for your domain.com
+
+A
+@       <Load Balance>      30
+CNAME
+www     @                   30
+```
+
+> Change your `k8s-prod/ingress-srv.yaml` host to `www.domain.com`
+
 #### Init
 
 For the fist time we'll commit to master,
