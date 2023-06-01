@@ -12,5 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run:  curl -O ${{ secrets.VKE_YAML_URL }}
-      - run:  kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} apply -f infra/k8s && kubectl --kubeconfig=${{ secrets.VKE_YAML_FILENAME }} apply -f infra/k8s-prod
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
+      - run:  doctl kubernetes cluster kubeconfig save ticketing-k8s
+      - run:  kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
