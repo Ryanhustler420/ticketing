@@ -29,7 +29,7 @@ npm install -g typescript @REM tsc --init, to generate tsconfig.json file in you
 5.  Get ingress pod name: `kubectl get pods -n ingress-nginx` [Fix](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/#enable-the-ingress-controller)
 6.  Start port forwarding: `kubectl port-forward pod/ingress-nginx-controller-5d88495688-dxxgw --address 0.0.0.0 80:80 443:443 -n ingress-nginx`, where you should replace `ingress-nginx-controller-5d88495688-dxxgw` with your ingress pod name.
 7.  Enjoy using ingress on custom domain in any browser (but only when port forwarding is active)
-8. `skaffold delete` to delete deployment and services at once
+8.  `skaffold delete` to delete deployment and services at once
 
 ##### Common code share between services
 
@@ -68,3 +68,60 @@ npm install -g typescript @REM tsc --init, to generate tsconfig.json file in you
 
 9.  Configure `kubectl` context or download `google cloud sdk` to automatically manage `kubectl` contex so it will point to server's cluster
 10. practice on digital ocean
+
+##### Best Practice
+
+> Always checkout new branch for your `next feature`
+
+##### Digital Ocean Setup
+
+> Create a project
+
+> Create a k8s cluster with atleast 3 node
+
+> install `[doctl](https://docs.digitalocean.com/reference/doctl/how-to/install/)` cli on your local machine
+
+```cmd
+Invoke-WebRequest https://github.com/digitalocean/doctl/releases/download/v1.94.0/doctl-1.94.0-windows-amd64.zip -OutFile ~\doctl-1.94.0-windows-amd64.zip
+Expand-Archive -Path ~\doctl-1.94.0-windows-amd64.zip
+Now set the exe file to PATH VARIABLE of your system
+```
+
+> Create an API key from `digital ocean` dashboard
+
+> Run `doctl auth init` hit enter and paste the API TOKEN [You should be authenticated]
+
+> Run `doctl kubernetes cluster kubeconfig save <cluster_name>` where `cluster_name` should be `ticketing-k8s`
+
+> Run to verify `doctl get nodes`
+
+> Run `kubectl config view` to see all the different context you have access to
+
+> Run `kubectl config use-context <context_name>` where `context_name` shoulbe be `minikube`
+
+> Create `secret env variables` on the respository to refer inside `workflow` files.
+
+> Create a workflow file to apply all the `infra/k8s` and `infra/k8s-prod` manifest files to `ticketing-k8s`
+
+> Create bunch of workflow files to automate the re-deployments
+
+> Run `kubectl config use-context do-blr1-ticketing-k8s`
+
+```cmd
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=xxxxxxxxxx
+kubectl create secret generic razorpay-key-id-secret --from-literal=RAZORPAY_KEY_ID=xxxxxxxxxx
+kubectl create secret generic razorpay-key-secret-secret --from-literal=RAZORPAY_KEY_SECRET=xxxxxxxxxx
+```
+
+> Run `kubectl get secrets`
+
+> Enable ingress to cluster for incoming traffic using [this](https://kubernetes.github.io/ingress-nginx/deploy/#digital-ocean)
+
+```cmd
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.0/deploy/static/provider/do/deploy.yaml
+kubectl apply -f https://gist.githubusercontent.com/Ryanhustler420/b86e46c4e7bd10f6fca04314fc85680e/raw/121fafbfda3f565c452ff7e6b9ca8c9e94a91ab9/ingress-nginx-controller-v1.8.0-digital-ocean-deploy.yaml
+```
+
+#### Init
+
+For the fist time we'll commit to master,
